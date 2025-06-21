@@ -1,19 +1,14 @@
-import { http, createConfig } from 'wagmi'
-import { base, mainnet, optimism } from 'wagmi/chains'
-import { injected, metaMask, safe, walletConnect } from 'wagmi/connectors'
-
-const projectId = '<WALLETCONNECT_PROJECT_ID>'
+import { createConfig, http } from "wagmi";
+import { sepolia } from "wagmi/chains";
+import { injected, metaMask } from "wagmi/connectors";
 
 export const config = createConfig({
-  chains: [mainnet, base],
+  chains: [sepolia],
   connectors: [
     injected(),
-    walletConnect({ projectId }),
     metaMask(),
-    safe(),
   ],
   transports: {
-    [mainnet.id]: http(),
-    [base.id]: http(),
+    [sepolia.id]: http("https://eth-sepolia.g.alchemy.com/v2/SqQ3mzHTlsA3oeu-izMva"), // Replace with your Alchemy/Infura URL
   },
-})
+});
