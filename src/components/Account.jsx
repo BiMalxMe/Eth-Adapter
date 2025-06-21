@@ -1,8 +1,9 @@
 
 import { useAccount, useBalance, useDisconnect, useEnsAvatar, useEnsName } from 'wagmi'
+import { connect } from 'wagmi/actions'
 
 export function Account() {
-    const { address } = useAccount()
+    const { address,connector } = useAccount()
     const { disconnect } = useDisconnect()
 
     const balance = useBalance({
@@ -10,13 +11,16 @@ export function Account() {
     })
   
     return (
-      <div>
+      <div style={{
+        
+      }}>
         {address && <div>
           Your address - {address}
           Your balance - {balance.data?.formatted}
         </div>}
         
         <button onClick={() => disconnect()}>Disconnect</button>
+        
       </div>
     )
   }
